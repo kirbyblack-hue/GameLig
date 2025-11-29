@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gamelig - Hızlı HTML5 Oyun Portalı</title>
+    <!-- Tailwind CSS CDN'i yükleniyor -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons CDN'i (ikonlar için) yükleniyor -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        /* Özel stil: 'Inter' fontunu kullanıyoruz */
+        html { font-family: 'Inter', sans-serif; }
+        /* Oyun kartlarına hafif bir geçiş efekti ekleyelim */
+        .game-card {
+            transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <!-- ÜST NAVİGASYON (HEADER) -->
+    <header class="sticky top-0 z-50 bg-white shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex justify-between items-center">
+            <!-- Logo Alanı -->
+            <a href="#" class="flex items-center space-x-2">
+                <span class="text-3xl font-extrabold text-teal-600 tracking-wider">GAMELIG</span>
+                <span class="text-xs font-semibold bg-orange-500 text-white px-2 py-0.5 rounded-full">Hızlı Oyna</span>
+            </a>
+
+            <!-- Arama Çubuğu (Büyük ekranlarda) -->
+            <div class="hidden md:block w-full max-w-md">
+                <div class="relative">
+                    <input type="search" placeholder="Oyun Ara..." class="w-full py-2 pl-10 pr-4 border border-gray-200 rounded-full focus:outline-none focus:ring-2 focus:ring-teal-500">
+                    <i data-lucide="search" class="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400"></i>
+                </div>
+            </div>
+
+            <!-- Kullanıcı Menüsü/Giriş -->
+            <nav class="flex space-x-4">
+                <button class="text-gray-600 hover:text-teal-600 transition duration-150 p-2 rounded-full hover:bg-gray-100">
+                    <i data-lucide="user" class="w-6 h-6"></i>
+                </button>
+                <button class="bg-teal-600 hover:bg-teal-700 text-white font-semibold py-2 px-4 rounded-full shadow-md transition duration-150">
+                    Giriş Yap
+                </button>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- KATEGORİ NAVİGASYONU (Alt Menü) -->
+    <nav class="bg-gray-100 border-b border-gray-200 shadow-inner">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-start space-x-6 overflow-x-auto whitespace-nowrap py-2">
+                <!-- Kategori Butonları -->
+                <a href="#" class="flex items-center space-x-2 text-teal-600 font-semibold border-b-2 border-teal-600 pb-1">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                    <span>POPÜLER</span>
+                </a>
+                <a href="#" class="flex items-center space-x-2 text-gray-600 hover:text-teal-600 pb-1">
+                    <i data-lucide="swords" class="w-5 h-5"></i>
+                    <span>Aksiyon</span>
+                </a>
+                <a href="#" class="flex items-center space-x-2 text-gray-600 hover:text-teal-600 pb-1">
+                    <i data-lucide="puzzle" class="w-5 h-5"></i>
+                    <span>Bulmaca</span>
+                </a>
+                <a href="#" class="flex items-center space-x-2 text-gray-600 hover:text-teal-600 pb-1">
+                    <i data-lucide="rocket" class="w-5 h-5"></i>
+                    <span>Macera</span>
+                </a>
+                <a href="#" class="flex items-center space-x-2 text-gray-600 hover:text-teal-600 pb-1">
+                    <i data-lucide="trophy" class="w-5 h-5"></i>
+                    <span>Spor</span>
+                </a>
+                <a href="#" class="flex items-center space-x-2 text-gray-600 hover:text-teal-600 pb-1">
+                    <i data-lucide="star" class="w-5 h-5"></i>
+                    <span>Yeni Oyunlar</span>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8">
+
+        <!-- OYUN LİSTELERİ -->
+        <section id="game-list-section" class="mb-12">
+            
+            <h2 class="text-3xl font-bold mb-6 text-gray-900 border-l-4 border-teal-500 pl-3">🔥 En Popüler Oyunlar</h2>
+
+            <!-- Oyun Kartlarının Yerleşeceği Grid Alanı -->
+            <div id="game-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4 sm:gap-6">
+                <!-- Oyun Kartları Buraya JavaScript ile Eklenecek -->
+            </div>
+            
+            <div class="text-center mt-10">
+                <button class="bg-gray-200 text-gray-700 hover:bg-gray-300 font-semibold py-3 px-8 rounded-full transition duration-150">
+                    Daha Fazla Oyun Yükle
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center">
+            <p class="text-xl font-bold text-teal-400 mb-2">GAMELIG</p>
+            <p class="text-sm text-gray-400">© 2025 Gamelig. Tüm Hakları Saklıdır. Hızlı ve Eğlenceli HTML5 Oyunları.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Lucide ikonlarını yükle
+        lucide.createIcons();
+
+        // ------------------------------------------
+        // 1. MOCK (SAHTE) OYUN VERİSİ
+        // ------------------------------------------
+        const mockGames = [
+            { id: 1, name: "Süper Zıplama Macerası", category: "Macera", plays: "1.2M", color: "red-500" },
+            { id: 2, name: "Kare Bulmaca Uzmanı", category: "Bulmaca", plays: "850K", color: "blue-500" },
+            { id: 3, name: "Hızlı Top Koşusu", category: "Spor", plays: "520K", color: "green-500" },
+            { id: 4, name: "Göktaşı Savunması", category: "Aksiyon", plays: "410K", color: "purple-500" },
+            { id: 5, name: "Böcek Ezmece 3D", category: "Aksiyon", plays: "390K", color: "yellow-500" },
+            { id: 6, name: "Çiftlik Simülatörü", category: "Simülasyon", plays: "350K", color: "lime-500" },
+            { id: 7, name: "Gizemli Labirent", category: "Macera", plays: "300K", color: "pink-500" },
+            { id: 8, name: "Sonsuz Uzay", category: "Aksiyon", plays: "280K", color: "teal-500" },
+            { id: 9, name: "Matematik Hız Testi", category: "Eğitici", plays: "250K", color: "orange-500" },
+            { id: 10, name: "Küplerin Savaşı", category: "Bulmaca", plays: "220K", color: "indigo-500" },
+        ];
+
+        // ------------------------------------------
+        // 2. OYUN KARTI OLUŞTURMA FONKSİYONU
+        // ------------------------------------------
+        function createGameCard(game) {
+            const card = document.createElement('div');
+            card.className = `game-card bg-white rounded-lg overflow-hidden shadow-lg border-2 border-gray-100`;
+
+            const placeholderUrl = `https://placehold.co/300x200/${game.color.replace('-', '').substring(0, 6)}/ffffff?text=${encodeURIComponent(game.name)}`;
+            
+            // Kart içeriği
+            card.innerHTML = `
+                <!-- Oyun Resmi (Placeholder) -->
+                <div class="relative pt-[66.66%] bg-${game.color} overflow-hidden">
+                    <img src="${placeholderUrl}" 
+                         alt="${game.name} Oyunu" 
+                         class="absolute top-0 left-0 w-full h-full object-cover">
+                </div>
+
+                <!-- Kart Bilgileri -->
+                <div class="p-3">
+                    <span class="text-xs font-medium text-gray-500 uppercase">${game.category}</span>
+                    <h3 class="text-lg font-bold text-gray-900 truncate mt-1">${game.name}</h3>
+                    
+                    <div class="flex justify-between items-center mt-2">
+                        <!-- Oynanma Sayısı -->
+                        <div class="flex items-center text-sm text-gray-600">
+                            <i data-lucide="users" class="w-4 h-4 mr-1 text-teal-500"></i>
+                            <span class="font-semibold">${game.plays}</span>
+                        </div>
+                        
+                        <!-- Oyna Butonu -->
+                        <button class="bg-orange-500 text-white text-xs font-bold py-1.5 px-3 rounded-full hover:bg-orange-600 transition duration-150 shadow-md">
+                            Oyna
+                        </button>
+                    </div>
+                </div>
+            `;
+            
+            // Yeni eklenen kart içindeki ikonları yükle
+            card.querySelectorAll('[data-lucide]').forEach(el => lucide.createIcons({'icon-container': el}));
+            
+            return card;
+        }
+
+        // ------------------------------------------
+        // 3. KARTLARI SAYFAYA YERLEŞTİRME
+        // ------------------------------------------
+        document.addEventListener('DOMContentLoaded', () => {
+            const gameGrid = document.getElementById('game-grid');
+            
+            if (gameGrid) {
+                mockGames.forEach(game => {
+                    const card = createGameCard(game);
+                    gameGrid.appendChild(card);
+                });
+            } else {
+                console.error("Oyun listeleme alanı (game-grid) bulunamadı.");
+            }
+        });
+
+    </script>
+</body>
+</html>
